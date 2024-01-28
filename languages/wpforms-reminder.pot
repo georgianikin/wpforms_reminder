@@ -71,10 +71,6 @@ msgid "Reminde Before"
 msgstr "Reminde Before"
 
 #. 
-msgid "Field id of date range"
-msgstr "Field id of date range"
-
-#. 
 msgid "Template"
 msgstr "Template"
 
@@ -117,51 +113,3 @@ msgstr "Reminde before"
 #. 
 msgid "Field id of the date range"
 msgstr "Field id of the date range"
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""
-
-#. 
-msgid ""
-msgstr ""

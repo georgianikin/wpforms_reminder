@@ -23,7 +23,7 @@
                         <th scope="col" class="manage-column column-sender-address"><?php _e('Sender address', 'wpforms-reminder'); ?></th>
                         <th scope="col" class="manage-column column-replyto"><?php _e('Reply to', 'wpforms-reminder'); ?></th>
                         <th scope="col" class="manage-column column-days-before"><?php _e('Reminde Before', 'wpforms-reminder'); ?></th>
-                        <th scope="col" class="manage-column column-range-field-id"><?php _e('Field id of date range', 'wpforms-reminder'); ?></th>
+                        <th scope="col" class="manage-column column-range-field-id"><?php _e('Field id of the date range', 'wpforms-reminder'); ?></th>
                         <th scope="col" class="manage-column column-content"><?php _e('Template', 'wpforms-reminder'); ?></th>
                         <th scope="col" class="manage-column column-actions"><?php _e('Actions', 'wpforms-reminder'); ?></th>
                     </tr>
