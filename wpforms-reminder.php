@@ -22,7 +22,7 @@ function wpf_reminder_deactivate() {
 }
 
 // Hook to run the reminder function
-add_action('cr_send_reminders', 'wpf_reminder_send_reminders_function');
+add_action('cr_send_reminders', 'wpf_reminder_send_functions');
 
 include(plugin_dir_path(__FILE__) . 'send_mail.php');
 
@@ -38,6 +38,17 @@ function wpforms_reminder_menu() {
         'dashicons-clock',                              // Icon
         30                                              // Position
         );
+    
+    // Function to add a menu in the admin panel
+        add_submenu_page(
+            'wpforms-reminder-settings',       // Page title
+            __('Test reminder mail', 'wpforms-reminder'),       // Menu title
+            __('Test reminder mail', 'wpforms-reminder'),       // Menu title
+            'manage_options',                                   // capability
+            'wpforms-reminder-settings-test',                   // Menu slug
+            'wpf_reminder_send_function',            // Menu callback
+            30                                              // Position
+            );
 }
 add_action('admin_menu', 'wpforms_reminder_menu');
 
