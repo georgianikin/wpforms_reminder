@@ -34,7 +34,7 @@
         <label for="replyto"><?php _e('Reply to', 'wpforms-reminder');?>:</label>
         <input type="text" name="replyto" value="<?= esc_attr(get_post_meta($template_id, 'replyto', true)) ?>"><br>
         
-        <label for="range_field_id"><?php _e('Field id of date range', 'wpforms-reminder');?>:</label>
+        <label for="range_field_id"><?php _e('Field id of the date range', 'wpforms-reminder');?>:</label>
         
         <input type="number" name="range_field_id" value="<?= esc_attr(get_post_meta($template_id, 'range_field_id', true)) ?>"><br>
         
