@@ -113,3 +113,7 @@ msgstr "Reminde before"
 #. 
 msgid "Field id of the date range"
 msgstr "Field id of the date range"
+
+#. 
+msgid "Test reminder mail"
+msgstr "Test reminder mail"

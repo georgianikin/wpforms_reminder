@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WPForms Reminder 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpforms-reminder\n"
 "POT-Creation-Date: 2024-01-27T19:20:03+03:00\n"
-"PO-Revision-Date: 2024-01-28 03:05+0200\n"
+"PO-Revision-Date: 2024-01-28 03:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -114,3 +114,7 @@ msgstr "Напомнить за"
 #.
 msgid "Field id of the date range"
 msgstr "ID поля периода мероприятия"
+
+#.
+msgid "Test reminder mail"
+msgstr "Проверка отправки писем"
