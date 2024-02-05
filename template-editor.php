@@ -19,6 +19,15 @@
             <?php endforeach;?>
         </select><br>
         
+        <label for="date_regex"><?php _e('Regex of the date', 'wpforms-reminder');?>:</label>
+        <input type="text" name="date_regex" value="<?= esc_attr(get_post_meta($template_id, 'date_regex', true)) ?>"><br>
+        
+        <label for="regex_index"><?php _e('Index of the regex', 'wpforms-reminder');?>:</label>
+        <input type="number" name="regex_index" value="<?= esc_attr(get_post_meta($template_id, 'regex_index', true)) ?>"><br>
+        
+        <label for="date_format"><?php _e('Format of the date', 'wpforms-reminder');?>:</label>
+        <input type="text" name="date_format" value="<?= esc_attr(get_post_meta($template_id, 'date_format', true)) ?>"><br>
+        
         <label for="to_email"><?php _e('E-mail', 'wpforms-reminder');?>:</label>
         <input type="text" name="to_email" value="<?= esc_attr(get_post_meta($template_id, 'to_email', true)) ?>"><br>
         

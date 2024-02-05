@@ -9,23 +9,33 @@
  * Domain Path: /languages
  */
     
-// Schedule the cron job when the plugin is activated
-register_activation_hook(__FILE__, 'wpf_reminder_activate');
-function wpf_reminder_activate() {
-    wp_schedule_event(time(), 'daily', 'cr_send_reminders');
-}
-
 // Unschedule the cron job when the plugin is deactivated
 register_deactivation_hook(__FILE__, 'wpf_reminder_deactivate');
 function wpf_reminder_deactivate() {
-    wp_clear_scheduled_hook('cr_send_reminders');
+    wp_clear_scheduled_hook('wpf_reminder_send');
 }
 
 // Hook to run the reminder function
-add_action('cr_send_reminders', 'wpf_reminder_send_functions');
+add_action('wpf_reminder_send', 'wpf_reminder_send_function');
 
 include(plugin_dir_path(__FILE__) . 'send_mail.php');
 
+add_action( 'admin_init', 'add_wpf_reminder_cron_event' );
+
+function add_wpf_reminder_cron_event() {
+    
+    if( ! wp_next_scheduled( 'wpf_reminder_send' ) ) {
+        $dt = new DateTimeImmutable();
+        $dt->setTimezone(new DateTimeZone('UTC'));
+        $dt->setTime(0,1,0,0);
+        $dt->add("P1D");
+        wp_schedule_event( $dt->getTimestamp(), 'daily', 'wpf_reminder_send');
+    }
+}
+
+function do_this_hourly() {
+    // делаем что-либо каждый час
+}
 
 // Function to add a menu in the admin panel
 function wpforms_reminder_menu() {
@@ -39,16 +49,6 @@ function wpforms_reminder_menu() {
         30                                              // Position
         );
     
-    // Function to add a menu in the admin panel
-        add_submenu_page(
-            'wpforms-reminder-settings',       // Page title
-            __('Test reminder mail', 'wpforms-reminder'),       // Menu title
-            __('Test reminder mail', 'wpforms-reminder'),       // Menu title
-            'manage_options',                                   // capability
-            'wpforms-reminder-settings-test',                   // Menu slug
-            'wpf_reminder_send_function',            // Menu callback
-            30                                              // Position
-            );
 }
 add_action('admin_menu', 'wpforms_reminder_menu');
 

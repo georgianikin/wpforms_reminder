@@ -25,6 +25,12 @@
         // Save 'to_email'
         update_post_meta($template_id, 'to_email', isset($_POST['to_email']) ? $_POST['to_email'] : '');
         
+        // Save 'to_email'
+        update_post_meta($template_id, 'date_regex', isset($_POST['date_regex']) ? $_POST['date_regex'] : '');
+        
+        // Save 'to_email'
+        update_post_meta($template_id, 'date_format', isset($_POST['date_format']) ? $_POST['date_format'] : '');
+        
         // Save 'subject'
         update_post_meta($template_id, 'subject', isset($_POST['subject']) ? $_POST['subject'] : '');
         
@@ -39,6 +45,9 @@
         
         // Save 'days_before'
         update_post_meta($template_id, 'days_before', isset($_POST['days_before']) ? intval($_POST['days_before']) : 0);
+        
+        // Save 'regex_index'
+        update_post_meta($template_id, 'regex_index', isset($_POST['regex_index']) ? intval($_POST['regex_index']) : 0);
         
         // Save 'range_field_id'
         update_post_meta($template_id, 'range_field_id', isset($_POST['range_field_id']) ? intval($_POST['range_field_id']) : 0);

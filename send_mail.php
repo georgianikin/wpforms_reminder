@@ -1,7 +1,7 @@
 <?php
 
 function wpf_reminder_send_function() {
-    
+    print_r("Send mails start!");
     $args = array(
         'numberposts' => -1,
         'post_type'   => 'wpforms_reminder',
@@ -11,20 +11,22 @@ function wpf_reminder_send_function() {
     );
     $templates = get_posts($args);
     
-    // Date range format for check
-    $range_pattern = '/^\d{2}\.\d{2}\.\d{4} - \d{2}\.\d{2}\.\d{4}$/';
     // Get current date
     $currentDateTime = new DateTimeImmutable();
     
     foreach ($templates as $template) {
         $form_data = wpforms()->form->get( get_post_meta($template->ID, 'form_id', true), [ 'content_only' => true ] );
         $form_data = apply_filters( 'wpforms_frontend_form_data', $form_data );
+        // Date range format for check date_regex
+        $range_pattern = get_post_meta($template->ID, 'date_regex', true);
+        $regex_index = get_post_meta($template->ID, 'regex_index', true);
+        $date_format = get_post_meta($template->ID, 'date_format', true);
         
         $entries = wpforms()->entry->get_entries(['form_id' => get_post_meta($template->ID, 'form_id', true)]);
         
         // Add days for compare date
         $DiffDateTime = $currentDateTime->add(new DateInterval('P' . get_post_meta($template->ID, 'days_before', true) .'D'));
-        $DiffDateTime = $DiffDateTime->format("d.m.Y");
+        $DiffDateTime = $DiffDateTime->format($date_format);
         
         // Get date range field ID
         $date_field_id = get_post_meta($template->ID, 'range_field_id', true);
@@ -34,9 +36,8 @@ function wpf_reminder_send_function() {
             if(isset($entry->fields[$date_field_id])) {
                 $dateRange = $entry->fields[$date_field_id]['value'];
                 
-                if (preg_match($range_pattern, $dateRange)) {
-                    $dateArray = explode(" - ", $dateRange);
-                    if ($DiffDateTime == $dateArray[0]) {
+                if (preg_match($range_pattern, $dateRange, $matches)) {
+                    if ($DiffDateTime == $matches[$regex_index]) {
                         wpf_reminder_send_email($template, $entry, $form_data);
                     }
                 }
@@ -74,8 +75,9 @@ function wpf_reminder_send_email($template, $entry, $form_data) {
     $emails->__set( 'from_name', $sender_name );
     $emails->__set( 'from_address', $sender_address );
     $emails->__set( 'reply_to', $replyto );
+    $emails->__set( 'html', true );
+    $emails->__set( 'content_type', 'text/html' );
     $emails = apply_filters( 'wpforms_entry_email_before_send', $emails );
-    
     $emails->send( $to, $subject, $post_content );
     
 
